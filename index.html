@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allison's Guide to Pala Santa Giulia 🏒</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ice: #c8f0ff;
+    --blue: #0a2a5e;
+    --blue-mid: #1a4a9e;
+    --cyan: #00c8ff;
+    --red: #e8102a;
+    --gold: #f0c040;
+    --white: #f0f8ff;
+    --dark: #050e22;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--dark);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ── ANIMATED ICE BG ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,150,255,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 80%, rgba(0,200,255,0.08) 0%, transparent 60%),
+      linear-gradient(160deg, #050e22 0%, #081830 50%, #050e22 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* snowflake particles */
+  .flakes { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .flake {
+    position: absolute;
+    top: -20px;
+    color: rgba(200,240,255,0.25);
+    font-size: 1rem;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    overflow: hidden;
+  }
+
+  .puck-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+    animation: slideDown 0.6s ease both;
+  }
+  .puck-line span { font-size: 2rem; }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.2rem, 10vw, 6.5rem);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-shadow: 0 0 40px rgba(0,200,255,0.5), 0 4px 0 var(--blue);
+    animation: slideDown 0.7s ease both;
+  }
+
+  .hero h1 .accent { color: var(--cyan); }
+
+  .hero-sub {
+    margin-top: 1rem;
+    font-size: 1.15rem;
+    color: var(--ice);
+    opacity: 0.85;
+    font-weight: 500;
+    animation: slideDown 0.85s ease both;
+  }
+
+  .event-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(135deg, var(--red), #c00020);
+    border-radius: 50px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(232,16,42,0.4);
+    animation: slideDown 1s ease both;
+  }
+
+  /* ── RINK DIVIDER ── */
+  .rink-divider {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .rink-divider::before, .rink-divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+  .rink-divider-icon { font-size: 1.4rem; }
+
+  /* ── ROUTE CONTAINER ── */
+  .route-container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.2rem 4rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+
+  /* ── STEP CARDS ── */
+  .step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .step:nth-child(1) { animation-delay: 0.1s }
+  .step:nth-child(2) { animation-delay: 0.2s }
+  .step:nth-child(3) { animation-delay: 0.3s }
+  .step:nth-child(4) { animation-delay: 0.4s }
+  .step:nth-child(5) { animation-delay: 0.5s }
+
+  /* vertical line connector */
+  .step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    min-width: 50px;
+  }
+
+  .step-num {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-line {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: linear-gradient(to bottom, rgba(0,200,255,0.4), rgba(0,200,255,0.1));
+    margin: 4px 0;
+  }
+
+  .step:last-child .step-line { display: none; }
+
+  .step-card {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,200,255,0.15);
+    border-radius: 14px;
+    padding: 1rem 1.1rem 1.1rem;
+    backdrop-filter: blur(6px);
+    transition: border-color 0.3s, transform 0.2s;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-card:hover {
+    border-color: rgba(0,200,255,0.4);
+    transform: translateX(4px);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .step-icon { font-size: 1.5rem; }
+
+  .step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .step-title .station { color: var(--cyan); }
+
+  .step-body {
+    font-size: 0.93rem;
+    color: rgba(200,235,255,0.8);
+    line-height: 1.55;
+  }
+
+  .step-body strong { color: var(--white); }
+
+  /* line badge pills */
+  .line-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+
+  .badge-s5 { background: #004b87; color: #fff; border: 1.5px solid #5599dd; }
+  .badge-m3 { background: #f9a615; color: #111; border: 1.5px solid #ffd060; }
+  .badge-bus { background: #2a8a3a; color: #fff; border: 1.5px solid #66cc77; }
+
+  .num-s5 { background: #1a6abf; color: #fff; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; }
+
+  /* ── TIPS BOX ── */
+  .tips-box {
+    background: linear-gradient(135deg, rgba(0,80,160,0.3), rgba(0,150,255,0.1));
+    border: 1px solid rgba(0,200,255,0.25);
+    border-radius: 16px;
+    padding: 1.4rem 1.4rem;
+    margin-top: 0.5rem;
+    animation: fadeUp 0.5s ease 0.6s both;
+  }
+
+  .tips-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .tips-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .tips-list li {
+    font-size: 0.9rem;
+    color: rgba(200,235,255,0.85);
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-start;
+  }
+
+  .tips-list li::before {
+    content: '❄';
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── MAPS BUTTONS ── */
+  .map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .map-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .map-btn-primary {
+    background: linear-gradient(135deg, #1a6ade, #0044aa);
+    color: #fff;
+    border: 1px solid rgba(100,160,255,0.3);
+    box-shadow: 0 2px 10px rgba(0,100,255,0.2);
+  }
+
+  .map-btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: var(--ice);
+    border: 1px solid rgba(200,240,255,0.2);
+  }
+
+  /* ── FULL ROUTE BUTTON ── */
+  .full-route-wrap {
+    text-align: center;
+    margin-top: 2rem;
+    animation: fadeUp 0.5s ease 0.8s both;
+  }
+
+  .full-route-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, var(--cyan), #0088cc);
+    color: #050e22;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 0 30px rgba(0,200,255,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .full-route-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 50px rgba(0,200,255,0.55);
+  }
+
+  /* ── DESTINATION CARD ── */
+  .destination-hero {
+    background: linear-gradient(135deg, rgba(232,16,42,0.15), rgba(10,42,94,0.4));
+    border: 1.5px solid rgba(232,16,42,0.35);
+    border-radius: 20px;
+    padding: 1.4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    animation: fadeUp 0.5s ease 0.05s both;
+  }
+
+  .destination-hero h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+
+  .destination-hero p {
+    color: rgba(200,235,255,0.75);
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: rgba(200,235,255,0.35);
+    border-top: 1px solid rgba(0,200,255,0.08);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* step number colors */
+  .step-1 .step-num { background: linear-gradient(135deg, #1a6abf, #0044aa); color: #fff; }
+  .step-2 .step-num { background: linear-gradient(135deg, #1a6abf, #0044aa); color: #fff; }
+  .step-3 .step-num { background: linear-gradient(135deg, #d08000, #f0a800); color: #fff; }
+  .step-4 .step-num { background: linear-gradient(135deg, #2a8a3a, #1a6a2a); color: #fff; }
+  .step-5 .step-num { background: linear-gradient(135deg, #c01020, #900010); color: #fff; }
+
+  .step-1 .step-line, .step-2 .step-line { background: linear-gradient(to bottom, rgba(30,100,200,0.5), rgba(30,100,200,0.1)); }
+  .step-3 .step-line { background: linear-gradient(to bottom, rgba(200,150,0,0.4), rgba(30,100,200,0.15)); }
+  .step-4 .step-line { background: linear-gradient(to bottom, rgba(0,150,50,0.4), rgba(180,0,20,0.2)); }
+</style>
+</head>
+<body>
+
+<!-- Snowflakes -->
+<div class="flakes" id="flakes"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="puck-line">
+    <span>🇺🇸</span>
+    <span>🏒</span>
+    <span>🇮🇹</span>
+  </div>
+  <h1>HEY <span class="accent">ALLISON!</span></h1>
+  <p class="hero-sub">Your complete guide to get to the game 🎉</p>
+  <div class="event-badge">
+    🥇 Paralympic Hockey — GRAND FINAL — Sunday
+  </div>
+</header>
+
+<div class="rink-divider">
+  <div class="rink-divider-icon">🏟️</div>
+</div>
+
+<!-- ROUTE -->
+<main class="route-container">
+
+  <!-- Destination card -->
+  <div class="destination-hero">
+    <div style="font-size:2.5rem; margin-bottom:0.3rem">🏒</div>
+    <h2>Pala Santa Giulia — Milano</h2>
+    <p>Via Enrico Mattei, 20 — Milan | Rogoredo district</p>
+    <a class="map-btn map-btn-primary" href="https://www.google.com/maps/search/Pala+Santa+Giulia+Milan/@45.4384,9.2275,15z" target="_blank">
+      📍 Open in Google Maps
+    </a>
+  </div>
+
+  <div class="section-title">🗺️ Your Step-by-Step Route</div>
+
+  <!-- STEP 1 -->
+  <div class="step step-1">
+    <div class="step-left">
+      <div class="step-num">1</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-icon">🚉</span>
+        <div class="step-title">Start at <span class="station">Parabiago Station</span></div>
+      </div>
+      <div class="step-body">
+        Head to <strong>Parabiago train station</strong>. You'll be taking the Passante Ferroviario.
+        Look for platforms serving the <span class="line-badge badge-s5">🚆 S5</span> line toward
+        <strong>Treviglio / Pioltello</strong> (direction: Milan city centre).<br><br>
+        Trains run frequently — check the timetable board on the platform.
+      </div>
+      <a class="map-btn map-btn-secondary" href="https://www.google.com/maps/search/Stazione+Parabiago/@45.5581,8.9502,16z" target="_blank">
+        📍 Parabiago Station on Maps
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step step-2">
+    <div class="step-left">
+      <div class="step-num">2</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-icon">🚆</span>
+        <div class="step-title">Board <span class="station">S5</span> — Stay on until <span class="station">Repubblica</span></div>
+      </div>
+      <div class="step-body">
+        Board the <span class="line-badge badge-s5">🚆 S5</span> direction <strong>Treviglio / Milan</strong>.
+        The ride takes approximately <strong>40–50 minutes</strong>. You'll pass through several stops — <strong>do not get off</strong> until <em>Repubblica</em>.<br><br>
+
+        <div class="intermediate-stops">
+          <div class="int-stop">
+            <div class="int-dot"></div>
+            <div class="int-info">
+              <span class="int-name">Rho</span>
+              <span class="int-note">~10 min from Parabiago — stay on board 🚆</span>
+            </div>
+            <a class="int-map" href="https://www.google.com/maps/search/Stazione+Rho+Milano/@45.5286,9.0403,16z" target="_blank">📍</a>
+          </div>
+          <div class="int-line"></div>
+          <div class="int-stop">
+            <div class="int-dot int-dot-fiera"></div>
+            <div class="int-info">
+              <span class="int-name">Rho Fiera Milano</span>
+              <span class="int-note">Expo / Fiera stop — stay on board 🚆</span>
+            </div>
+            <a class="int-map" href="https://www.google.com/maps/search/Rho+Fiera+Milano+Stazione/@45.5208,9.0675,16z" target="_blank">📍</a>
+          </div>
+          <div class="int-line"></div>
+          <div class="int-stop">
+            <div class="int-dot int-dot-centrale"></div>
+            <div class="int-info">
+              <span class="int-name">Milano Centrale FS</span>
+              <span class="int-note">Big central station — one stop before Repubblica 🚆</span>
+            </div>
+            <a class="int-map" href="https://www.google.com/maps/search/Milano+Centrale+Stazione/@45.4852,9.2045,17z" target="_blank">📍</a>
+          </div>
+          <div class="int-line"></div>
+          <div class="int-stop int-stop-get-off">
+            <div class="int-dot int-dot-off"></div>
+            <div class="int-info">
+              <span class="int-name" style="color:#00c8ff">⬇️ GET OFF HERE — Repubblica</span>
+              <span class="int-note">Underground stop — follow signs for <strong>Metro M3</strong></span>
+            </div>
+            <a class="int-map" href="https://www.google.com/maps/search/Milano+Repubblica+Passante/@45.4792,9.2012,17z" target="_blank">📍</a>
+          </div>
+        </div>
+      </div>
+      <a class="map-btn map-btn-primary" href="https://www.google.com/maps/dir/Stazione+Parabiago/Stazione+Rho/Rho+Fiera+Milano/Milano+Centrale/Repubblica+Milano" target="_blank">
+        🗺️ Full S5 route on Google Maps
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step step-3">
+    <div class="step-left">
+      <div class="step-num">3</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-icon">🟡</span>
+        <div class="step-title">Take <span class="station">Metro M3</span> → <span class="station">Rogoredo</span></div>
+      </div>
+      <div class="step-body">
+        Exit the train and follow signs for <strong>Metro M3</strong>
+        <span class="line-badge badge-m3">🟡 M3 Yellow Line</span>.<br><br>
+        Take M3 in the direction of <strong>San Donato</strong> and ride it to the last stop:
+        <strong>Rogoredo FS</strong>. The ride is about <strong>10 minutes</strong> and 6 stops.
+        <br><br>
+        💡 <em>Tip: buy a single ticket (€2.20) at the machine — it covers both the metro and the whole urban network. If you're a group, a carnet of 10 tickets is more economical.</em>
+      </div>
+      <a class="map-btn map-btn-secondary" href="https://www.google.com/maps/search/Metro+M3+Rogoredo+Milan/@45.4384,9.2275,15z" target="_blank">
+        📍 Rogoredo Station on Maps
+      </a>
+      <a class="map-btn map-btn-primary" href="https://www.google.com/maps/dir/Stazione+Repubblica+Milano/Stazione+Rogoredo+Milano" target="_blank" style="margin-left:0.4rem">
+        🗺️ Directions Repubblica→Rogoredo
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step step-4">
+    <div class="step-left">
+      <div class="step-num">4</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-icon">🚌</span>
+        <div class="step-title"><span class="station">Shuttle Bus</span> from Rogoredo</div>
+      </div>
+      <div class="step-body">
+        Once at <strong>Rogoredo FS</strong>, look for the <strong>event shuttle (navetta)</strong>
+        <span class="line-badge badge-bus">🚌 Navetta</span> to
+        <strong>Pala Santa Giulia</strong>.<br><br>
+        The shuttle stop is right outside the station exit — just follow the crowd
+        or look for signage with the hockey or arena logo. Shuttles run
+        frequently before and after the game. It's a short ride (~5 min).
+        <br><br>
+        💡 <em>Can't find the shuttle? The arena is also reachable on foot from Rogoredo in about 15–20 minutes following Via Rogoredo → Via Mattei.</em>
+      </div>
+      <a class="map-btn map-btn-secondary" href="https://www.google.com/maps/dir/Stazione+Rogoredo+FS+Milano/Pala+Santa+Giulia+Milan/@45.4402,9.2225,14z" target="_blank">
+        📍 Rogoredo → Pala Santa Giulia on Maps
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step step-5">
+    <div class="step-left">
+      <div class="step-num">5</div>
+    </div>
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-icon">🏟️</span>
+        <div class="step-title">You've arrived! <span class="station">Pala Santa Giulia</span></div>
+      </div>
+      <div class="step-body">
+        <strong>Welcome to Pala Santa Giulia!</strong> 🎉🏒<br>
+        Enjoy the Paralympic Hockey Final with your friends. Go team! 🇺🇸
+        <br><br>
+        Follow the arena signs to your gate. Doors usually open
+        <strong>90 minutes before face-off</strong>.
+      </div>
+      <a class="map-btn map-btn-primary" href="https://www.google.com/maps/search/Pala+Santa+Giulia+Milan/@45.4384,9.2275,15z" target="_blank">
+        📍 Pala Santa Giulia — Full Map
+      </a>
+    </div>
+  </div>
+
+  <!-- FULL ROUTE BUTTON -->
+  <div class="full-route-wrap">
+    <a class="full-route-btn"
+       href="https://www.google.com/maps/dir/Stazione+Parabiago/Milano+Repubblica+Stazione/Stazione+Rogoredo+Milano/Pala+Santa+Giulia+Milan"
+       target="_blank">
+      🗺️ Open Full Route in Google Maps
+    </a>
+  </div>
+
+  <!-- TIPS -->
+  <div class="rink-divider" style="margin-top:2.5rem">
+    <div class="rink-divider-icon">⭐</div>
+  </div>
+
+  <div class="tips-box">
+    <div class="tips-title">💡 Handy Tips for Sunday</div>
+    <ul class="tips-list">
+      <li>Buy your <strong>ATM Milano</strong> metro ticket (€2.20) at any station machine — it covers buses and metro for 90 min.</li>
+      <li>The <strong>S5 Passante</strong> trains run every 15–30 min on Sunday — check <strong>Trenord</strong> app for the live timetable.</li>
+      <li>Leave <strong>Parabiago at least 2 hours before</strong> game time to arrive comfortably and find your seats.</li>
+      <li>At <strong>Repubblica</strong>, look for yellow M3 signs. The metro connection is inside the same station.</li>
+      <li>Keep your ticket — inspectors are active on Milan transit 🎫</li>
+      <li>For the <strong>return trip</strong>, shuttles back to Rogoredo run after the final whistle.</li>
+      <li>No Wi-Fi? Screenshot this page or save it offline before you go!</li>
+    </ul>
+  </div>
+
+  <!-- TRANSPORT SUMMARY -->
+  <div style="margin-top:1.8rem; background:rgba(255,255,255,0.03); border:1px solid rgba(200,235,255,0.1); border-radius:14px; padding:1.2rem; animation: fadeUp 0.5s ease 0.9s both;">
+    <div style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.1rem; color:var(--ice); margin-bottom:0.9rem; letter-spacing:1px;">🚇 ROUTE SUMMARY</div>
+    <div style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.9rem; color:rgba(200,235,255,0.8);">
+      <div style="display:flex; align-items:center; gap:0.7rem;">
+        <span style="font-size:1rem;">🚉</span>
+        <span><strong style="color:#fff">Parabiago</strong></span>
+        <span style="color:var(--cyan)">→</span>
+        <span class="line-badge badge-s5" style="font-size:0.78rem">S5</span>
+        <span style="color:rgba(200,235,255,0.5); font-size:0.82rem">~45 min</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.7rem;">
+        <span style="font-size:1rem;">🏙️</span>
+        <span><strong style="color:#fff">Repubblica</strong></span>
+        <span style="color:var(--cyan)">→</span>
+        <span class="line-badge badge-m3" style="font-size:0.78rem">M3 Yellow</span>
+        <span style="color:rgba(200,235,255,0.5); font-size:0.82rem">~10 min</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.7rem;">
+        <span style="font-size:1rem;">🚌</span>
+        <span><strong style="color:#fff">Rogoredo</strong></span>
+        <span style="color:var(--cyan)">→</span>
+        <span class="line-badge badge-bus" style="font-size:0.78rem">Navetta 🏒</span>
+        <span style="color:rgba(200,235,255,0.5); font-size:0.82rem">~5 min</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.7rem; padding-top:0.3rem; border-top:1px solid rgba(255,255,255,0.06); margin-top:0.3rem">
+        <span style="font-size:1rem;">⏱️</span>
+        <span style="color:rgba(200,235,255,0.6); font-size:0.85rem">Total travel time: approximately</span>
+        <strong style="color:var(--gold)">~60–70 minutes</strong>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  Made with ❤️ for Allison & friends &nbsp;|&nbsp; Have fun at the game! 🏒🥇
+</footer>
+
+<script>
+  // Generate snowflakes
+  const container = document.getElementById('flakes');
+  const symbols = ['❄','❅','❆','·','✦'];
+  for (let i = 0; i < 30; i++) {
+    const f = document.createElement('div');
+    f.className = 'flake';
+    f.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    f.style.left = Math.random() * 100 + 'vw';
+    f.style.animationDuration = (6 + Math.random() * 12) + 's';
+    f.style.animationDelay = (Math.random() * 10) + 's';
+    f.style.fontSize = (0.7 + Math.random() * 1.2) + 'rem';
+    f.style.opacity = (0.1 + Math.random() * 0.3);
+    container.appendChild(f);
+  }
+</script>
+</body>
+</html>
