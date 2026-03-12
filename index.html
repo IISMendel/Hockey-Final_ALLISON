@@ -409,6 +409,87 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── INTERMEDIATE STOPS ── */
+  .intermediate-stops {
+    margin-top: 0.8rem;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(0,200,255,0.1);
+  }
+
+  .int-stop {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .int-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1a6abf;
+    border: 2px solid rgba(100,160,255,0.5);
+    flex-shrink: 0;
+  }
+
+  .int-dot-fiera { background: #3a7adf; border-color: rgba(100,160,255,0.6); }
+  .int-dot-centrale { background: #5a8aef; border-color: rgba(150,200,255,0.7); }
+
+  .int-dot-off {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 0 8px rgba(0,200,255,0.6);
+  }
+
+  .int-line {
+    width: 2px;
+    height: 22px;
+    background: linear-gradient(to bottom, rgba(100,160,255,0.3), rgba(100,160,255,0.2));
+    margin-left: 5px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .int-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    line-height: 1.2;
+  }
+
+  .int-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+
+  .int-note {
+    font-size: 0.78rem;
+    color: rgba(200,235,255,0.55);
+  }
+
+  .int-map {
+    font-size: 0.9rem;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .int-map:hover { opacity: 1; }
+
+  .int-stop-get-off {
+    background: rgba(0,200,255,0.06);
+    border-radius: 6px;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid rgba(0,200,255,0.2);
+  }
+
   /* step number colors */
   .step-1 .step-num { background: linear-gradient(135deg, #1a6abf, #0044aa); color: #fff; }
   .step-2 .step-num { background: linear-gradient(135deg, #1a6abf, #0044aa); color: #fff; }
